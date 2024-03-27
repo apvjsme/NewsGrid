@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Món Ăn Đặc Sản</title>
-    <style>
-        .container {
-            width: 50%;
-            margin: auto;
-            padding-top: 50px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="text"],
-        input[type="url"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Product</title>
+<link rel="stylesheet" href="../pha-kien-zaiy-leukhamhan-arouny/style-form.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Thêm Món Ăn Đặc Sản</h2>
-        <form id="foodForm">
-            <label for="province">Tên Tỉnh:</label>
-            <input type="text" id="province" name="province" required>
-            
-            <label for="dish">Tên Món Ăn:</label>
-            <input type="text" id="dish" name="dish" required>
-            
-            <label for="image">Đường Dẫn Hình Ảnh:</label>
-            <input type="url" id="image" name="image" required>
-            
-            <button type="button" onclick="saveFood()">Lưu</button>
-        </form>
-    </div>
+<h1>THÊM MÓN MỚI</h1>
+<hr />
+<form name="frm">
+  <p>
+    <label>
+      ID
+      <input type="text" name="pid" id="pid" />
+    </label>
+    <label>
+      Tên Tỉnh
+      <input type="text" name="province" id="province" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Tên Món
+      <input type="text" name="dishName" id="dishName" />
+    </label>
+    <label>
+      Đơn Giá
+      <input type="text" name="price" id="price" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Link Ảnh
+      <input type="text" name="imageLink" id="imageLink" />
+    </label>
+    <br />
+    <br />
+    <button type="button" onclick="sell()">Thêm</button>
+    <button type="button" onclick="cancel()">Hủy</button>
+  </p>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên Tỉnh</th>
+      <th>Tên Món</th>
+      <th>Đơn Giá</th>
+      <th>Link Ảnh</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+<script>
+  var id = 0;
 
-    <script src="data.js"></script>
-    <script>
+var sell = () => {
+  var province = frm.province.value;
+  var dishName = frm.dishName.value;
+  var price = parseFloat(frm.price.value);
+  var imageLink = frm.imageLink.value;
 
-    </script>
+  if (province && dishName && price) {
+    id++;
+    var row = "<tr>";
+    row += "<td>" + id + "</td>";
+    row += "<td>" + province + "</td>";
+    row += "<td>" + dishName + "</td>";
+    row += "<td>" + price + "</td>";
+    row += "<td>" + imageLink + "</td>";
+    row += "</tr>";
+    document.getElementById("tbody").innerHTML += row;
+
+    var foods = JSON.parse(localStorage.getItem('foods')) || [];
+
+    foods.push({
+      province: province,
+      dish_name: dishName,
+      price: price.toFixed(2),
+      image_link: imageLink
+    });
+
+    localStorage.setItem('foods', JSON.stringify(foods));
+
+    alert('Dữ liệu đã được lưu thành công.');
+
+    frm.reset();
+  } else {
+    alert('Vui lòng điền đầy đủ thông tin và đúng định dạng.');
+  }
+};
+
+var cancel = () => {
+  frm.province.value = "";
+  frm.dishName.value = "";
+  frm.price.value = "";
+  frm.imageLink.value = "";
+};
+
+</script>
 </body>
 </html>
