@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Món Ăn Đặc Sản</title>
+    <style>
+        .container {
+            width: 50%;
+            margin: auto;
+            padding-top: 50px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Thêm Món Ăn Đặc Sản</h2>
+        <form id="foodForm">
+            <label for="province">Tên Tỉnh:</label>
+            <input type="text" id="province" name="province" required>
+            
+            <label for="dish">Tên Món Ăn:</label>
+            <input type="text" id="dish" name="dish" required>
+            
+            <label for="image">Đường Dẫn Hình Ảnh:</label>
+            <input type="url" id="image" name="image" required>
+            
+            <button type="button" onclick="saveFood()">Lưu</button>
+        </form>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>
