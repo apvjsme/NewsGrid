@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tìm kiếm món ăn</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #searchForm {
+      margin-bottom: 20px;
+    }
+    #searchInput {
+      padding: 8px;
+      width: 300px;
+      font-size: 16px;
+    }
+    #searchButton {
+      padding: 8px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #results {
+      list-style-type: none;
+      padding: 0;
+    }
+    .resultItem {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .resultItem h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .resultItem p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tìm kiếm món ăn</h1>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Nhập tên món hoặc ID...">
+    <button type="button" id="searchButton">Tìm kiếm</button>
+  </form>
+  <ul id="results"></ul>
+
+  <script src="data.js"></script>
+  <script>
+    function searchFoods(keyword) {
+      var results = [];
+      var lowerKeyword = keyword.toLowerCase();
+      foods.forEach(function(food) {
+        if (food.dish_name.toLowerCase().includes(lowerKeyword) || food.id.toString().includes(keyword)) {
+          results.push(food);
+        }
+      });
+      return results;
+    }
+
+    function displayResults(results) {
+      var resultsList = document.getElementById("results");
+      resultsList.innerHTML = "";
+      results.forEach(function(food) {
+        var listItem = document.createElement("li");
+        listItem.classList.add("resultItem");
+        var title = document.createElement("h2");
+        title.textContent = food.dish_name + " (ID: " + food.id + ")";
+        listItem.appendChild(title);
+        var province = document.createElement("p");
+        province.textContent = "Tỉnh: " + food.province;
+        listItem.appendChild(province);
+        var price = document.createElement("p");
+        price.textContent = "Giá: " + food.price;
+        listItem.appendChild(price);
+        resultsList.appendChild(listItem);
+      });
+    }
+
+    document.getElementById("searchButton").addEventListener("click", function() {
+      var keyword = document.getElementById("searchInput").value.trim();
+      var searchResults = searchFoods(keyword);
+      displayResults(searchResults);
+    });
+  </script>
+</body>
+</html>

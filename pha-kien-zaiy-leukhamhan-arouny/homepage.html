@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOW DATA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Danh sách món ăn</h1>
+  <div class="grid-container" id="foodList"></div>
+
+  <script src="data.js"></script>
+  <script>
+    window.onload = function() {
+      var foodList = document.getElementById('foodList');
+      
+      foods.forEach(function(food) {
+        var card = document.createElement('div');
+        card.classList.add('card');
+
+        var image = document.createElement('img');
+        image.src = food.image_link;
+        card.appendChild(image);
+
+        var cardContent = document.createElement('div');
+        cardContent.classList.add('card-content');
+
+        var title = document.createElement('h2');
+        title.textContent = food.dish_name;
+        cardContent.appendChild(title);
+
+        var details = document.createElement('p');
+        details.textContent = `${food.province} - $${food.price}`;
+        cardContent.appendChild(details);
+
+        card.appendChild(cardContent);
+
+        foodList.appendChild(card);
+      });
+    };
+  </script>
+</body>
+</html>

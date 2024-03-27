@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Product</title>
+<link rel="stylesheet" href="../pha-kien-zaiy-leukhamhan-arouny/style-form.css">
+<script src="form.js"></script>
+</head>
+<body>
+<h1>THÊM MÓN MỚI</h1>
+<hr />
+<form name="frm">
+  <p>
+    <label>
+      ID
+      <input type="text" name="pid" id="pid" />
+    </label>
+    <label>
+      Tên Tỉnh
+      <input type="text" name="province" id="province" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Tên Món
+      <input type="text" name="dishName" id="dishName" />
+    </label>
+    <label>
+      Đơn Giá
+      <input type="text" name="price" id="price" />
+    </label>
+    <br />
+    <br />
+    <label>
+      Link Ảnh
+      <input type="text" name="imageLink" id="imageLink" />
+    </label>
+    <br />
+    <br />
+    <button type="button" onclick="sell()">Thêm</button>
+    <button type="button" onclick="cancel()">Hủy</button>
+  </p>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên Tỉnh</th>
+      <th>Tên Món</th>
+      <th>Đơn Giá</th>
+      <th>Link Ảnh</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+</body>
+</html>
