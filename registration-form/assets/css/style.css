@@ -139,9 +139,16 @@ input#yes, input#no {
 
 #firstName-error,
 #lastName-error,
-#accountName-error {
+#accountName-error,
+#password-error,
+#phoneNumber-error,
+#areaCode-error,
+#email-error,
+#confirmPassword-error,
+#subject-error {
     color: red;
     margin-top: -10px;
     margin-bottom: 10px;
     display: none;
+    font-size: 12px;
 }
